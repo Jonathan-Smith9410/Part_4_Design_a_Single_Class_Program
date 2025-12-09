@@ -45,13 +45,13 @@ class ToDo:
         # dict
         pass
     
-    def remove_item(self, key):
+    def complete_task(self, key):
         # Parameters:
         # key: an int representing a key value in the todo list
         # Side effects:
-        # None
+        # Removes item from dict at specified key value
         # Returns:
-        # dict
+        # None
         pass
 
 
@@ -97,12 +97,12 @@ todo.show_list() # => {1: "Walk the dog", 2: "Do the shopping"}
 
 """
 Given an dictionary with more than one item present
-remove_item(key) deletes the entry at the key integer value
+complete_task(key) deletes the entry at the key integer value
 """
 todo = Todo()
 todo.add("Walk the dog")
 todo.add("Do the shopping")
-todo.remove_item(1)
+todo.complete_task(1)
 todo.show_list() # => {2: "Do the shopping"}
 
 
