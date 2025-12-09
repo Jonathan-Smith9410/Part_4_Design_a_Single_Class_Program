@@ -4,7 +4,14 @@ Copy this into a `recipe.md` in your project and fill it out.
 
 ## 1. Describe the Problem
 
-_Put or write the user story here. Add any clarifying notes you might have._
+
+As a user
+So that I can keep track of my tasks
+I want a program that I can add todo tasks to and see a list of them.
+
+As a user
+So that I can focus on tasks to complete
+I want to mark tasks as complete and have them disappear from the list.
 
 ## 2. Design the Class Interface
 
@@ -13,32 +20,41 @@ _Include the initializer, public properties, and public methods with all paramet
 ```python
 # EXAMPLE
 
-class Reminder:
-    # User-facing properties:
-    #   name: string
+class ToDo:
 
-    def __init__(self, name):
+    def __init__(self):
         # Parameters:
-        #   name: string
+        # None
         # Side effects:
-        #   Sets the name property of the self object
-        pass # No code here yet
-
-    def remind_me_to(self, task):
+        # Initialise dict to store todo items
+        pass
+    
+    def add(self, item):
         # Parameters:
-        #   task: string representing a single task
+        # item: string representing a task
+        # Side effects:
+        # Add item to dict as a value with a sequential int as a key
+        pass
+    
+    def show_list(self):
+        # Parameters:
+        # None
+        # Side effects:
+        # None
         # Returns:
-        #   Nothing
-        # Side-effects
-        #   Saves the task to the self object
-        pass # No code here yet
+        # dict
+        pass
+    
+    def remove_item(self, key):
+        # Parameters:
+        # key: an int representing a key value in the todo list
+        # Side effects:
+        # None
+        # Returns:
+        # dict
+        pass
 
-    def remind(self):
-        # Returns:
-        #   A string reminding the user to do the task
-        # Side-effects:
-        #   Throws an exception if no task is set
-        pass # No code here yet
+
 ```
 
 ## 3. Create Examples as Tests
@@ -49,27 +65,47 @@ _Make a list of examples of how the class will behave in different situations._
 # EXAMPLE
 
 """
-Given a name and a task
-#remind reminds the user to do the task
+Given a task
+add() adds the item to the dict
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("Walk the dog")
-reminder.remind() # => "Walk the dog, Kay!"
+todo = Todo()
+todo.add("Walk the dog")
+todo.show_list() # => {1: "Walk the dog"}
 
 """
-Given a name and no task
-#remind raises an exception
+Given a task with no contents
+add() raises an exception
 """
-reminder = Reminder("Kay")
-reminder.remind() # raises an error with the message "No task set."
+todo = Todo()
+todo.add("") # raises an error with the message "No task present to add."
 
 """
-Given a name and an empty task
-#remind still reminds the user to do the task, even though it looks odd
+Given an empty dictionary
+show_list() raises an exception
 """
-reminder = Reminder("Kay")
-reminder.remind_me_to("")
-reminder.remind() # => ", Kay!"
+todo = Todo()
+todo.show_list() # raises an error with the message "No tasks present in list."
+
+"""
+Given an dictionary with more than one item present
+show_list() returns the contents
+"""
+todo = Todo()
+todo.add("Walk the dog")
+todo.add("Do the shopping")
+todo.show_list() # => {1: "Walk the dog", 2: "Do the shopping"}
+
+"""
+Given an dictionary with more than one item present
+remove_item(key) deletes the entry at the key integer value
+"""
+todo = Todo()
+todo.add("Walk the dog")
+todo.add("Do the shopping")
+todo.remove_item(1)
+todo.show_list() # => {2: "Do the shopping"}
+
+
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
